@@ -12,7 +12,12 @@ import {
 
 const AppContext = createContext();
 
-const initialState = { loading: false, cart: cartItems };
+const newCartItems = cartItems.map((cart) => [cart.id, cart]);
+
+const newCart = new Map(newCartItems);
+const newCartArray = Array.from(newCart.entries());
+
+const initialState = { loading: false, cart: [...newCartArray] };
 
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
