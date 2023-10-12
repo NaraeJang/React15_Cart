@@ -20,8 +20,11 @@ const initialState = {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const clearCart = () => {
+    dispatch({ type: CLEAR_CART });
+  };
   return (
-    <AppContext.Provider value={{ ...state, dispatch }}>
+    <AppContext.Provider value={{ ...state, dispatch, clearCart }}>
       {children}
     </AppContext.Provider>
   );
